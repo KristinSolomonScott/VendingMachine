@@ -4,15 +4,67 @@ Kristin Scott'''
 
 import random
 
+#################################################
+'''
+change_total is a parameter used by the return_change function. It holds the amount of change owed to a customer after currency has been inserted following a purchase
+
+change_msg is a local string variable used in the return_change function. It prints a description of the currency returned to a customer.
+
+amt_to_return is a local numeric variable used in the return_change function. It starts as the total of the amount that needs to be returned to the customer and changes as currency is returned until it equals 0. 
+
+owed is a parameter used by the payment function. 
+
+cur is a parameter used by the payment function.
+
+quant is a parameter used by the payment function.
+
+pmnt is a local numeric variable used in the payment function.
+
+still_owed is a local numeric variable used in the payment function.
+
+The following variables (each followed by _Q) hold the quantity of the variable named:
+pringles_Q 
+pretzels_Q
+sunchips_Q
+cheetos_Q
+funyuns_Q
+doritos_Q
+kitkat_Q
+reeses_Q
+mandms_Q
+cookies_Q
+
+place_order is a booelan variable used with a while loop to see if customer would like to continue to buy snacks
+
+selection_made is a boolean variable used to keep track of whether or not the user has selected an item for purchase. It is set to True if the number of items available is at least as high as the number the user would like to purchase
+
+selection is a string the user enters to indicate their choice of items
+
+quantity is a numeric variable used to indication the number of items the user would like to purchase
+
+
+price is a numeric variable and its value is set depending on which item was chosen
+
+total is a numeric variable that holds the value of price*quantity
+
+currency is a string variable used to indicate the value of the currency the user has entered
+
+quant_currency is a numeric variable used to indicate the number of a particular currency that has been entered
+
+again is a boolean variable used when asking if the customer would like to make another purchase 
+
+'''
+#################################################
+
 #takes the amount of changed owed to customer and returns a string describing the change being returned
 def return_change(change_total):
   change_msg="Your change is: \n"
   amt_to_return=change_total
 
-  while int(amt_to_return) > 20:
+  while int(amt_to_return) >= 20:
     amt_to_return -=20
     change_msg = change_msg + "a twenty dollar bill\n"
-  while int(amt_to_return) > 10:
+  while int(amt_to_return) >= 10:
     amt_to_return -=10
     change_msg = change_msg + "a ten dollar bill\n"
   while int(amt_to_return) >= 5:
@@ -47,7 +99,7 @@ def return_change(change_total):
 #takes the amount owed, the currency entered, and the quantity of the currency entered...returns a message informing customer how much is still owed & allows them to continue entering currency until amount owed is reached. When amount owed has been reached, prints a message telling customer to pick up item. 
 def payment(owed,cur,quant):
   pmnt=0
-  still_owed=0
+  still_owed=owed
   
   if cur.upper().strip()=="A":
       pmnt=20*quant
@@ -55,7 +107,7 @@ def payment(owed,cur,quant):
       pmnt=10*quant
   elif cur.upper().strip()=="C":
       pmnt=5*quant
-  elif cur.upper().strip()=="C" or cur.upper().strip()=="E":
+  elif cur.upper().strip()=="D" or cur.upper().strip()=="E":
       pmnt=quant
   elif cur.upper().strip()=="F":
       pmnt=.5*quant
@@ -68,8 +120,9 @@ def payment(owed,cur,quant):
   elif cur.upper().strip()=="J":
       pmnt=.01*quant
 
-    
+  
   #check to see if pmnt covered the amount owed
+
   still_owed=still_owed-pmnt
 
   
@@ -103,26 +156,26 @@ def payment(owed,cur,quant):
 
 
 #declaring variables for items in machine
-pringles=5 #a
-pringles_Q=random.randrange(10)
-pretzels=5 #b
-pretzels_Q=random.randrange(10)
-sunchips=5 #c
-sunchips_Q=random.randrange(10)
-cheetos=5 #d
-cheetos_Q=random.randrange(10)
-funyuns=5 #e
-funyuns_Q=random.randrange(10)
-doritos=5 #f
-doritos_Q=random.randrange(10)
-kitkat=5 #g
-kitkat_Q=random.randrange(10)
-reeses=5 #h
-reeses_Q=random.randrange(10)
-mandms=5 #i
-mandms_Q=random.randrange(10)
-cookies=5 #j
-cookies_Q=random.randrange(10)
+
+pringles_Q=random.randrange(10) #a
+
+pretzels_Q=random.randrange(10) #b
+
+sunchips_Q=random.randrange(10) #c
+
+cheetos_Q=random.randrange(10) #d
+
+funyuns_Q=random.randrange(10)   #e
+
+doritos_Q=random.randrange(10)  #f
+
+kitkat_Q=random.randrange(10)  #g
+
+reeses_Q=random.randrange(10)   #h
+
+mandms_Q=random.randrange(10)    #i
+
+cookies_Q=random.randrange(10)    #j
 
 
 
@@ -157,7 +210,7 @@ while place_order:
   quantity=int(input("How many would you like? "))
   
   if selection.lower().strip()=="a":
-    if pringles_Q > quantity:
+    if pringles_Q >= quantity:
       selection_made=True
       price=1
       total=price*quantity
@@ -165,7 +218,7 @@ while place_order:
     else:
       print("Please check quantity available and make another selection.")
   elif selection.lower().strip()=="b":
-    if pretzels_Q > quantity:
+    if pretzels_Q >= quantity:
       selection_made=True
       price=.75
       total=price*quantity
@@ -173,7 +226,7 @@ while place_order:
     else:
        print("Please check quantity available and make another selection.")
   elif selection.lower().strip()=="c":
-    if sunchips_Q > quantity:
+    if sunchips_Q >= quantity:
       selection_made=True
       price=.8
       total=price*quantity
@@ -181,7 +234,7 @@ while place_order:
     else:
       print("Please check quantity available and make another selection.")
   elif selection.lower().strip()=="d":
-    if cheetos_Q> quantity:
+    if cheetos_Q>= quantity:
       selection_made=True
       price=.75
       total=price*quantity
@@ -189,7 +242,7 @@ while place_order:
     else:
       print("Please check quantity available and  make another selection.")
   elif selection.lower().strip()=="e":
-    if funyuns_Q>quantity:
+    if funyuns_Q>= quantity:
       selection_made=True
       price=.75
       total=price*quantity
@@ -197,7 +250,7 @@ while place_order:
     else:
       print("Please check quantity available and  make another selection.")
   elif selection.lower().strip()=="f":
-    if doritos_Q> quantity:
+    if doritos_Q>= quantity:
       selection_made=True
       price=.75
       total=price*quantity
@@ -205,7 +258,7 @@ while place_order:
     else:
       print("Please check quantity available and make another selection.")
   elif selection.lower().strip()=="g":
-    if kitkat_Q>quantity:
+    if kitkat_Q>= quantity:
       selection_made=True
       price=1.2
       total=price*quantity
@@ -213,7 +266,7 @@ while place_order:
     else:
       print("Please check quantity available and make another selection.")
   elif selection.lower().strip()=="h":
-    if reeses_Q>quantity:
+    if reeses_Q>= quantity:
       selection_made=True
       price=1.2
       total=price*quantity
@@ -221,7 +274,7 @@ while place_order:
     else:
       print("Please check quantity available and  make another selection.")
   elif selection.lower().strip()=="i":
-    if mandms_Q>quantity:
+    if mandms_Q>= quantity:
       selection_made=True
       price=1.2
       total=price*quantity
@@ -229,7 +282,7 @@ while place_order:
     else: 
       print("Please check quantity available and  make another selection.")
   elif selection.lower().strip()=="j":
-    if cookies_Q>quantity:
+    if cookies_Q>= quantity:
       selection_made=True
       price=1
       total=price*quantity
