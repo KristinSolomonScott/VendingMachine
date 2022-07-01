@@ -4,39 +4,47 @@ Kristin Scott'''
 
 import random
 
-
+#takes the amount of changed owed to customer and returns a string describing the change being returned
 def return_change(change_total):
   change_msg="Your change is: \n"
   amt_to_return=change_total
 
-  if amt_to_return > 10:
+  while int(amt_to_return) > 20:
+    amt_to_return -=20
+    change_msg = change_msg + "a twenty dollar bill\n"
+  while int(amt_to_return) > 10:
     amt_to_return -=10
     change_msg = change_msg + "a ten dollar bill\n"
-  if amt_to_return > 5:
+  while int(amt_to_return) >= 5:
     amt_to_return -=5
     change_msg = change_msg + "a five dollar bill\n" 
-  while amt_to_return >= 1:
+  while int(amt_to_return) >= 1:
     amt_to_return -=1
     change_msg = change_msg + "a one dollar bill\n"
-  if amt_to_return >= .5:
+  while amt_to_return >= .5:
     amt_to_return -=.5
     change_msg = change_msg + "one fifty cent coin\n"
-  if amt_to_return >= .25:
+  while amt_to_return >= .25:
     amt_to_return -=.25
     change_msg = change_msg + "a quarter\n"
   while amt_to_return >= .1:
     amt_to_return -=.1
     change_msg = change_msg + "a dime\n"
-  if amt_to_return >= .05:
+  while amt_to_return >= .05:
     amt_to_return -=.05
     change_msg = change_msg + "a nickel\n"
   while amt_to_return >= .01:
     change_msg = change_msg + "a penny\n"
     amt_to_return -=.01
-    
+
+
+  
+
+  
   print(change_msg)
   
 
+#takes the amount owed, the currency entered, and the quantity of the currency entered...returns a message informing customer how much is still owed & allows them to continue entering currency until amount owed is reached. When amount owed has been reached, prints a message telling customer to pick up item. 
 def payment(owed,cur,quant):
   pmnt=0
   still_owed=0
@@ -62,17 +70,17 @@ def payment(owed,cur,quant):
 
     
   #check to see if pmnt covered the amount owed
-  still_owed=owed-pmnt
+  still_owed=still_owed-pmnt
 
   
-  if pmnt==owed:
+  if still_owed==0:
     print("Please pick up your snack below. Have a nice day!")
     
     
   elif still_owed > 0:  
       print("Amount due=", "{:.2f}".format(still_owed))
       print("--------------------------")
-      currency=input("Please enter the letter to indicate the currency you will you be using. \nBILLS:\nA. \t$20\nB. \t$10 \nC.\t$5 \nD. \t$1 \nCOINS: \nE. \t1.00 \nF.\t.50 \nG.\t.25 \nH.\t.10 \nI.\t.05 \nJ.\t.01\n    ***")
+      currency=input("Please enter the letter to indicate the currency you will you be using. \nBILLS:\nA. \t$20\nB. \t$10 \nC.\t$5 \nD. \t$1 \nCOINS: \nE. \t1.00 \nF.\t.50 \nG.\t.25 \nH.\t.10 \nI.\t.05 \nJ.\t.01\n")
   
       quant_currency=int(input("Enter quantity of this currency. \n"))
 
@@ -116,7 +124,11 @@ mandms_Q=random.randrange(10)
 cookies=5 #j
 cookies_Q=random.randrange(10)
 
-place_order=True
+
+
+
+
+place_order=True #variable used to see if customer would like to make another order
 while place_order:
 
   selection_made=False
@@ -235,6 +247,9 @@ while place_order:
   
     payment(total,currency,quant_currency)
   print("--------------------------------")
+
+#check to see if customer would like to place another order
+  
   again=input("Would you like to make a purchase? Please enter \"Y\" for yes or \"N\" for no.")
   
   if again.lower().strip()=="y":
