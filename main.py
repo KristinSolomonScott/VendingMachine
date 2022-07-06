@@ -59,38 +59,40 @@ again is a boolean variable used when asking if the customer would like to make 
 #takes the amount of changed owed to customer and returns a string describing the change being returned
 def return_change(change_total):
   change_msg="Your change is: \n"
-  amt_to_return=change_total
 
-  while int(amt_to_return) >= 20:
-    amt_to_return -=20
+  #these three lines of code are my attempt to correct the "one penny off" error that has been occurring
+  amt_to_return=change_total*100
+  amt_to_return = "{:.0f}".format(amt_to_return)
+  amt_to_return=int(amt_to_return)
+
+  while int(amt_to_return) >= 2000:
+    amt_to_return -=2000
     change_msg = change_msg + "a twenty dollar bill\n"
-  while int(amt_to_return) >= 10:
-    amt_to_return -=10
+  while int(amt_to_return) >= 1000:
+    amt_to_return -=1000
     change_msg = change_msg + "a ten dollar bill\n"
-  while int(amt_to_return) >= 5:
-    amt_to_return -=5
+  while int(amt_to_return) >= 500:
+    amt_to_return -=500
     change_msg = change_msg + "a five dollar bill\n" 
-  while int(amt_to_return) >= 1:
-    amt_to_return -=1
+  while int(amt_to_return) >= 100:
+    amt_to_return -=100
     change_msg = change_msg + "a one dollar bill\n"
-  while amt_to_return >= .5:
-    amt_to_return -=.5
+  while amt_to_return >= 50:
+    amt_to_return -=50
     change_msg = change_msg + "one fifty cent coin\n"
-  while amt_to_return >= .25:
-    amt_to_return -=.25
+  while amt_to_return >= 25:
+    amt_to_return -=25
     change_msg = change_msg + "a quarter\n"
-  while amt_to_return >= .1:
-    amt_to_return -=.1
+  while amt_to_return >= 10:
+    amt_to_return -=10
     change_msg = change_msg + "a dime\n"
-  while amt_to_return >= .05:
-    amt_to_return -=.05
+  while amt_to_return >= 5:
+    amt_to_return -=5
     change_msg = change_msg + "a nickel\n"
-  while amt_to_return >= .01:
+  while amt_to_return >= 1:
     change_msg = change_msg + "a penny\n"
-    amt_to_return -=.01
+    amt_to_return -=1
 
-
-  
 
   
   print(change_msg)
@@ -124,10 +126,11 @@ def payment(owed,cur,quant):
   #check to see if pmnt covered the amount owed
 
   still_owed=still_owed-pmnt
+  
 
   
   if still_owed==0:
-    print("Please pick up your snack below. Have a nice day!")
+      print("Please pick up your snack below. Have a nice day!")
     
     
   elif still_owed > 0:  
@@ -142,14 +145,9 @@ def payment(owed,cur,quant):
   elif still_owed < 0:
       still_owed= 0-still_owed
       return_change(still_owed)
-      #print("Your change is ", ("{:.2f}".format(still_owed)))
       print("Please take your change and pick up your snack below. Have a nice day!")
       still_owed=0
       
-
-
-
-
 
 
 
@@ -215,6 +213,7 @@ while place_order:
       price=1
       total=price*quantity
       print("Your total is $", "{:.2f}".format(total), ". Please insert bills or coins.")
+      pringles_Q-=quantity
     else:
       print("Please check quantity available and make another selection.")
   elif selection.lower().strip()=="b":
@@ -223,6 +222,7 @@ while place_order:
       price=.75
       total=price*quantity
       print("Your total is $", "{:.2f}".format(total), ". Please insert bills or coins.")
+      pretzels_Q-=quantity
     else:
        print("Please check quantity available and make another selection.")
   elif selection.lower().strip()=="c":
@@ -231,6 +231,7 @@ while place_order:
       price=.8
       total=price*quantity
       print("Your total is $", "{:.2f}".format(total), ". Please insert bills or coins.")
+      sunchips_Q-=quantity
     else:
       print("Please check quantity available and make another selection.")
   elif selection.lower().strip()=="d":
@@ -239,6 +240,7 @@ while place_order:
       price=.75
       total=price*quantity
       print("Your total is $", "{:.2f}".format(total), ". Please insert bills or coins.")
+      cheetos_Q-=quantity
     else:
       print("Please check quantity available and  make another selection.")
   elif selection.lower().strip()=="e":
@@ -247,6 +249,7 @@ while place_order:
       price=.75
       total=price*quantity
       print("Your total is $", "{:.2f}".format(total), ". Please insert bills or coins.")
+      funyuns_Q-=quantity
     else:
       print("Please check quantity available and  make another selection.")
   elif selection.lower().strip()=="f":
@@ -255,6 +258,7 @@ while place_order:
       price=.75
       total=price*quantity
       print("Your total is $", "{:.2f}".format(total), ". Please insert bills or coins.")
+      doritos_Q-=quantity
     else:
       print("Please check quantity available and make another selection.")
   elif selection.lower().strip()=="g":
@@ -263,6 +267,7 @@ while place_order:
       price=1.2
       total=price*quantity
       print("Your total is $", "{:.2f}".format(total), ". Please insert bills or coins.")
+      kitkat_Q-=quantity
     else:
       print("Please check quantity available and make another selection.")
   elif selection.lower().strip()=="h":
@@ -271,6 +276,7 @@ while place_order:
       price=1.2
       total=price*quantity
       print("Your total is $", "{:.2f}".format(total), ". Please insert bills or coins.")
+      reeses_Q-=quantity
     else:
       print("Please check quantity available and  make another selection.")
   elif selection.lower().strip()=="i":
@@ -279,6 +285,7 @@ while place_order:
       price=1.2
       total=price*quantity
       print("Your total is $", "{:.2f}".format(total), ". Please insert bills or coins.")
+      mandms_Q-=quantity
     else: 
       print("Please check quantity available and  make another selection.")
   elif selection.lower().strip()=="j":
@@ -287,16 +294,24 @@ while place_order:
       price=1
       total=price*quantity
       print("Your total is $", "{:.2f}".format(total), ". Please insert bills or coins.")
+      cookies_Q-=quantity
     else:
       print("Please check quantity available and  make another selection.")
   else:
     print("Please make another selection.")
     
+  bad_currency_chance=random.randrange(25)  # surprise element - machine does not accept a particular bill/coin
+  
+
   
   if selection_made:
     currency=input("Please enter the letter to indicate the currency you will you be using. \n---BILLS:\nA. \t$20\nB. \t$10 \nC.\t$5 \nD. \t$1 \n---COINS: \nE. \t1.00 \nF.\t .50 \nG.\t .25 \nH.\t .10 \nI.\t .05 \nJ.\t .01\n")
-    
-    quant_currency=int(input("Enter quantity of this currency. "))
+
+    if bad_currency_chance==1:
+      print("Currency is unacceptable. Please try a different form of currency.")
+      quant_currency=0
+    else:
+      quant_currency=int(input("Enter quantity of this currency. "))
   
     payment(total,currency,quant_currency)
   print("--------------------------------")
